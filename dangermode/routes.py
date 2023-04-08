@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from typing import Union
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse, Response
 from IPython import get_ipython
 from IPython.utils.capture import capture_output
@@ -35,35 +36,40 @@ async def get_ai_plugin_json():
 
 
 @router.get("/images/{image_name}", include_in_schema=False)
-async def get_image(image_name: str):
+async def get_image(image_name: str) -> Response:
     try:
         image_bytes = image_store.get_image(image_name)
         return Response(image_bytes, media_type="image/png")
     except KeyError as ke:
-        return ErrorData.from_exception(ke)
+        raise HTTPException(status_code=404, detail="Image not found")
 
 
 @router.get("/api/variable/{variable_name}")
-async def get_variable(variable_name: str) -> DisplayData:
+async def get_variable(variable_name: str) -> Union[DisplayData, ErrorData]:
+    '''Get a variable if it exists'''
     try:
         ip = get_ipython()
         value = ip.user_ns[variable_name]
         return DisplayData.from_tuple(ip.display_formatter.format(value))
     except KeyError as ke:
-        return ErrorData.from_exception(ke)
+        raise HTTPException(status_code=404, detail=f"Variable {variable_name} not defined")
 
 
 @router.post("/api/run_cell")
 async def execute(request: RunCellRequest) -> RunCellResponse:
+    '''Execute a cell and return the result
+
+    The execution format
+
+
+    '''
     try:
         with capture_output() as captured:
             ip = get_ipython()
             result = ip.run_cell(request.code)
 
         if result.success:
-            return RunCellResponse.from_result(
-                result.result, captured.stdout, captured.stderr, captured.outputs
-            )
+            return RunCellResponse.from_result(result.result, captured.stdout, captured.stderr, captured.outputs)
         else:
             return RunCellResponse.from_error(result.error_in_exec)
 

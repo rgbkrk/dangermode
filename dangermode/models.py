@@ -6,10 +6,14 @@ from pydantic import BaseModel
 
 
 class RunCellRequest(BaseModel):
+    '''A request to run a cell in the notebook.'''
+
     code: str
 
 
 class DisplayData(BaseModel):
+    '''Both display_data and execute_result messages use this format.'''
+
     data: Optional[dict] = None
     metadata: Optional[dict] = None
 
@@ -19,6 +23,8 @@ class DisplayData(BaseModel):
 
 
 class ImageData(BaseModel):
+    '''Public URL to the image data.'''
+
     data: bytes
     url: str
 
@@ -35,9 +41,7 @@ class ImageStore(BaseModel):
             image_name = f"image-{len(self.image_store)}.png"
             image_data = base64.b64decode(dd.data["image/png"])
 
-            self.image_store[image_name] = ImageData(
-                data=image_data, url=f"http://localhost:8000/images/{image_name}"
-            )
+            self.image_store[image_name] = ImageData(data=image_data, url=f"http://localhost:8000/images/{image_name}")
             dd.data["image/png"] = self.image_store[image_name].url
 
         return dd
@@ -62,6 +66,8 @@ class ErrorData(BaseModel):
 
 
 class RunCellResponse(BaseModel):
+    '''A bundle of outputs, stdout, stderr, and whether we succeeded or failed'''
+
     success: bool = False
     execute_result: Optional[DisplayData] = None
     error: Optional[str] = ""
