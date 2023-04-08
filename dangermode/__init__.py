@@ -25,5 +25,7 @@ def activate_dangermode(host="127.0.0.1"):
 
     atexit.register(lambda: asyncio.run(server.shutdown()))
 
+    return server
+
 
 __all__ = ["activate_dangermode"]
