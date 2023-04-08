@@ -12,11 +12,13 @@ def activate_dangermode():
     Jupyter Notebook or JupyterLab.
     """
     import asyncio
-    import uvicorn
     import atexit
+
+    import uvicorn
+
     from dangermode.app import app
 
-    config = uvicorn.Config(app)
+    config = uvicorn.Config(app, host='0.0.0.0')
     server = uvicorn.Server(config)
     loop = asyncio.get_event_loop()
     loop.create_task(server.serve())
