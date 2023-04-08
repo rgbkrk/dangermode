@@ -1,3 +1,4 @@
+import importlib.resources
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,7 +10,10 @@ app = FastAPI(servers=[{"url": "http://localhost:8000", "description": "Local se
 
 app.include_router(router)
 
-app.mount("/static", StaticFiles(directory="dangermode/static"), name="static")
+# Allow for serving the image asset from the package itself
+static_directory = importlib.resources.files("dangermode") / "static"
+
+app.mount("/static", StaticFiles(directory=str(static_directory)), name="static")
 
 
 # Defined outside of the router so we can call app.openapi()
