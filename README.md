@@ -12,7 +12,16 @@
 - Inspect variables and view results in real-time.
 - Serve images and display data to ChatGPT.
 
-## Installation
+## Get started, the recommended way
+
+Since you don't want to unleash ChatGPT on your own machine, lab, etc. Build the docker image and run it locally like this:
+
+```
+docker build . -t dangermode
+docker run -p 8000:8000 -i -t --rm dangermode
+```
+
+## (SCARY DANGER MODE) Installation
 
 To install the Dangermode package, use the following command:
 
