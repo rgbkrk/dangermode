@@ -3,7 +3,7 @@ name = "dangermode"
 version = "0.1.0"
 homepage = "https://github.com/rgbkrk/dangermode"
 description = "ChatGPT Danger Mode for Jupyter"
-authors = ["Kyle Kelley <rgbkrk@gmail.com>"]
+authors = ["Kyle Kelley <rgbkrk@gmail.com>", "Kafonek <matt.kafonek@noteable.io>"]
 readme = "README.md"
 classifiers=[
     'Development Status :: 2 - Pre-Alpha',
