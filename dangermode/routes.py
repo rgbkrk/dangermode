@@ -12,6 +12,8 @@ from dangermode.models import (
     image_store,
 )
 
+from dangermode.suggestions import RUN_CELL_PARSE_FAIL
+
 router = APIRouter()
 
 
@@ -59,14 +61,27 @@ async def get_variable(variable_name: str) -> Union[DisplayData, ErrorData]:
 async def execute(request: RunCellRequest) -> RunCellResponse:
     '''Execute a cell and return the result
 
-    The execution format
+    The execution format is
 
+    ```json
+    {
+        "code": "print('hello world')"
+    }
+    ```
 
     '''
+    code = request.code
+
+    if code is None or code == "":
+        raise HTTPException(
+            status_code=400,
+            detail=RUN_CELL_PARSE_FAIL,
+        )
+
     try:
         with capture_output() as captured:
             ip = get_ipython()
-            result = ip.run_cell(request.code)
+            result = ip.run_cell(code)
 
         if result.success:
             return RunCellResponse.from_result(result.result, captured.stdout, captured.stderr, captured.outputs)
@@ -74,4 +89,4 @@ async def execute(request: RunCellRequest) -> RunCellResponse:
             return RunCellResponse.from_error(result.error_in_exec)
 
     except Exception as e:
-        return RunCellResponse.from_error(e)
+        raise HTTPException(status_code=500, detail=f"Error executing code: {e}")
