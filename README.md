@@ -14,7 +14,11 @@ Running this plugin on your machine is dangerous. Running this plugin on a publi
 
 ## Demo
 
-![Demo Time](https://user-images.githubusercontent.com/836375/230805572-6cf9db2f-1cbe-479f-acba-a16615131510.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/836375/230805572-6cf9db2f-1cbe-479f-acba-a16615131510.png" width="45%" />
+&nbsp;
+<img src="https://user-images.githubusercontent.com/836375/230806667-d7a3319c-554d-478e-8008-e11ab712dd96.png" width="45%" />
+</p>
 
 ## Features
 
