@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dangermode"
-version = "0.2.0"
+version = "0.3.0"
 homepage = "https://github.com/rgbkrk/dangermode"
 description = "ChatGPT Danger Mode for Jupyter"
 authors = ["Kyle Kelley <rgbkrk@gmail.com>", "Kafonek <matt.kafonek@noteable.io>"]
