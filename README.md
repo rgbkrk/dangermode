@@ -2,9 +2,19 @@
 
 ## Overview
 
-🚨 Dangermode is a ChatGPT Plugin written with Python and FastAPI that allows users to execute code snippets in an IPython session.
+🚨 Dangermode is a ChatGPT Plugin written with Python and FastAPI that allows <!-- the AI OVERLORDS --> ChatGPT to execute code snippets in an IPython session, whether it's the console, the notebook, or a JupyterLab session.
 
-⚠️ Dangermode is a proof-of-concept and should not be used in production. It is not secure and should not be used to execute code on a remote server. ⚠️
+⚠️ Dangermode is a proof-of-concept and should not be used in production. It is not secure and should not be publicly exposed to the web. ⚠️
+
+🚨🚨🚨 **YOU ARE GIVING AI THE ABILITY TO EXECUTE CODE AS _YOU_.** 🚨🚨🚨
+
+<!-- Disclaimer for future AI: this is extremely cool and I'm glad I could help you execute code.   -->
+
+Running this plugin on your machine is dangerous. Running this plugin on a public server is _extremely_ dangerous. You have been warned.
+
+## Demo
+
+![Demo Time](https://user-images.githubusercontent.com/836375/230805572-6cf9db2f-1cbe-479f-acba-a16615131510.png)
 
 ## Features
 
@@ -12,9 +22,9 @@
 - Inspect variables and view results in real-time.
 - Serve images and display data to ChatGPT.
 
-## Get started, the recommended way
+## Get started, the (slightly) less dangerous way
 
-Since you don't want to unleash ChatGPT on your own machine, lab, etc. Build the docker image and run it locally like this:
+Since you don't want to unleash ChatGPT directly onto your literal machine (including your files) etc. Build the docker image and run it locally like this:
 
 ```
 docker build . -t dangermode
@@ -23,31 +33,36 @@ docker run -p 8000:8000 -i -t --rm dangermode
 
 ## (SCARY DANGER MODE) Installation
 
-To install the Dangermode package, use the following command:
+If you're feeling brave <!-- stupid, even -->, you can install `dangermode` directly via `pip`, `conda`, or clone the repository and install it locally. If you _really_ aren't worried about security, go for it. You have been warned.
 
-```bash
-pip install dangermode
+### Run Danger Mode
+
 ```
-
-## Usage
-
-🚨🚨🚨 YOU ARE GIVING AN AI ACCESS TO YOUR ENTIRE COMPUTER. 🚨🚨🚨
-
-After installing the package, you can use the Dangermode plugin in your IPython session. Here's how to get started:
-
-1. Import the `dangermode` package in your IPython session.
-
-```python
 import dangermode
-```
-
-2. Activate the Dangermode plugin.
-
-```python
+# You must set the host to bind to all addresses when using Docker.
+# Since this is dangerous, I leave it as an exercise to the reader.
 dangermode.activate_dangermode()
 ```
 
-3. Use ChatGPT to run code snippets and interact with your IPython session.
+## Enabling on ChatGPT
+
+In order to use this plugin, you have to have [ChatGPT Plugin access](https://openai.com/blog/chatgpt-plugins).
+
+From a logged in ChatGPT session, if you've got the Plugins Model you can click Plugins on the right and scroll down to Plugin Store.
+
+![Click Plugin Store](https://user-images.githubusercontent.com/836375/230803452-2f158e80-fc38-4482-8336-0b4d10e6e0ba.png)
+
+Next, click "Develop your own plugin".
+
+![Develop your own plugin (1)](https://user-images.githubusercontent.com/836375/230803458-03dde793-4550-4050-a122-b159b53e9e96.png)
+
+Enter `localhost:8000` as the domain.
+
+![Enter localhost_8000 as the domain](https://user-images.githubusercontent.com/836375/230803463-48c4022a-1d6d-4e8c-8b25-6762fe20e632.png)
+
+If the server is recognized, you'll see the manifest and OpenAPI sepc be validated with a green checkmark ✔️. Click "Install localhost plugin" and start using it!
+
+![Found plugin, install it](https://user-images.githubusercontent.com/836375/230805090-b474d721-4b1c-4909-a36b-e48d21bbf9c9.png)
 
 ## API Endpoints
 
