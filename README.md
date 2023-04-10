@@ -32,7 +32,7 @@ Since you don't want to unleash ChatGPT directly onto your literal machine (incl
 
 ```
 docker build . -t dangermode
-docker run -p 8000:8000 -i -t --rm dangermode
+docker run -p 8000:8000 -it --rm dangermode
 ```
 
 ## (SCARY DANGER MODE) Installation
