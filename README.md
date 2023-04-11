@@ -28,10 +28,16 @@ Running this plugin on your machine is dangerous. Running this plugin on a publi
 
 ## Get started, the (slightly) less dangerous way
 
-Since you don't want to unleash ChatGPT directly onto your literal machine (including your files) etc. Build the docker image and run it locally like this:
+Since you don't want to unleash ChatGPT directly onto your literal machine (including your files) etc., run the docker image:
 
 ```
-docker build . -t dangermode
+docker run -p 8000:8000 -it --rm rgbkrk/dangermode
+```
+
+You can also build and run it locally:
+
+```
+docker build . -t rgbkrk/dangermode
 docker run -p 8000:8000 -it --rm dangermode
 ```
 
