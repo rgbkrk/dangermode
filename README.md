@@ -41,6 +41,8 @@ If you're feeling brave <!-- stupid, even -->, you can install `dangermode` dire
 
 ### Run Danger Mode
 
+Run this in a cell in your notebook
+
 ```
 import dangermode
 # You must set the host to bind to all addresses when using Docker.
