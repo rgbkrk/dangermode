@@ -11,26 +11,26 @@ classifiers=[
     'License :: OSI Approved :: BSD License',
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
 ]
 packages = [
     { include = "dangermode" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-ipython = "^8.12.0"
-fastapi = "^0.95.0"
+python = "^3.12"
+ipython = "^9.0"
+fastapi = "^0.115.0"
 jupyter-console = "^6.6.3"
-uvicorn = "^0.21.1"
+uvicorn = "^0.34.0"
 
 
 [tool.poetry.group.dev.dependencies]
 tox = "^4.4.11"
 bump2version = "^1.0.1"
-pytest = "^7.2.2"
-black = "^23.3.0"
+pytest = "^8.0"
+black = "^26.0"
 isort = "^5.12.0"
 
 
@@ -53,7 +53,7 @@ commands = ["pytest"]
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py37', 'py38']
+target-version = ['py312', 'py313']
 include = '\.pyi?$'
 exclude = '''
 /(
