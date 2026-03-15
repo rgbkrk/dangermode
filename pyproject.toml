@@ -21,7 +21,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.12"
 ipython = "^9.0"
-fastapi = "^0.115.0"
+fastapi = ">=0.121.0"
 jupyter-console = "^6.6.3"
 uvicorn = "^0.34.0"
 
